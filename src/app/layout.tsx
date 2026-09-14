@@ -8,27 +8,26 @@ import LoadingScreen from "@/components/global/loading-screen";
 export const metadata = generateMetadata();
 
 export default function RootLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <html lang="en" suppressHydrationWarning>
-            <body
-                className={cn(
-                    "min-h-dvh bg-background text-foreground font-base antialiased overflow-x-hidden light",
-                    base.variable,
-                    heading.variable,
-                    handwriting.variable,
-                )}
-            >
-                <Providers>
-                    <LoadingScreen />
-                    <FlareCursor />
-                    {children}
-                </Providers>
-
-            </body>
-        </html>
-    );
-};
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-dvh bg-background text-foreground font-base antialiased overflow-x-hidden light",
+          base.variable,
+          heading.variable,
+          handwriting.variable,
+        )}
+      >
+        <Providers>
+          <LoadingScreen />
+          <FlareCursor />
+          {children}
+        </Providers>
+      </body>
+    </html>
+  );
+}

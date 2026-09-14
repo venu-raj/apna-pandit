@@ -81,51 +81,8 @@ const Footer = () => {
 
           {/* Right Content */}
           <div className="lg:col-span-7">
-            {/* Popular Pujas + Quick Links */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {/* Popular Pujas */}
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">
-                  Popular Pujas
-                </h3>
-
-                <ul className="mt-4 space-y-3">
-                  {POPULAR_PUJAS.map((puja) => (
-                    <li key={puja.label}>
-                      <Link
-                        href={puja.href}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {puja.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Quick Links */}
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">
-                  Quick Links
-                </h3>
-
-                <ul className="mt-4 space-y-3">
-                  {NAV_LINKS.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
             {/* Contact Information */}
-            <div className="mt-10 pt-10 border-t border-foreground/5">
+            <div className="">
               <h3 className="text-sm font-semibold text-foreground">
                 Contact Information
               </h3>

@@ -4,17 +4,18 @@ import { useState } from "react";
 import Container from "@/components/global/container";
 import Wrapper from "@/components/global/wrapper";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { BookingFormDialog } from "../form/booking-form-dialog";
-import { GalleryItem } from "@/types/gallery";
+import { Product } from "@/types/product";
 
 type GalleryProps = {
-  gallery: GalleryItem[];
+  gallery: Product[];
   title: string;
   description: string;
 };
 
 const Gallery = ({ gallery, title, description }: GalleryProps) => {
-  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState<Product | null>(null);
 
   return (
     <div className="flex flex-col items-center justify-center relative w-full pb-16 lg:pb-24">
@@ -33,9 +34,9 @@ const Gallery = ({ gallery, title, description }: GalleryProps) => {
 
         <div className="w-full mt-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {gallery.map((item, index) => (
+            {gallery.map((item) => (
               <Item
-                key={index}
+                key={item.id}
                 item={item}
                 onClick={() => setSelectedItem(item)}
               />
@@ -44,7 +45,7 @@ const Gallery = ({ gallery, title, description }: GalleryProps) => {
         </div>
       </Wrapper>
 
-      <BookingFormDialog
+      {/* <BookingFormDialog
         open={!!selectedItem}
         onOpenChange={(open) => {
           if (!open) {
@@ -52,40 +53,44 @@ const Gallery = ({ gallery, title, description }: GalleryProps) => {
           }
         }}
         item={selectedItem}
-      />
+      /> */}
     </div>
   );
 };
 
-const Item = ({
-  item,
-  onClick,
-}: {
-  item: GalleryItem;
-  onClick: () => void;
-}) => (
-  <Container>
-    <button onClick={onClick} className="flex flex-col w-full text-left">
-      <div className="relative aspect-square bg-foreground/5 border border-border/20 rounded-xl overflow-hidden">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover"
-        />
-      </div>
+const Item = ({ item, onClick }: { item: Product; onClick: () => void }) => {
+  const router = useRouter();
 
-      <div className="mt-4">
-        <span className="px-3 py-1 rounded-sm bg-primary/20 text-xs">
-          {item.category}
-        </span>
+  const handleClick = () => {
+    router.push(`/puja-services/${item.id}/${item.title.split(" ").join("-")}`);
 
-        <h3 className="text-lg font-semibold mt-2">{item.title}</h3>
+    onClick();
+  };
 
-        <p className="text-muted-foreground text-sm">{item.desc}</p>
-      </div>
-    </button>
-  </Container>
-);
+  return (
+    <Container>
+      <button onClick={handleClick} className="flex flex-col w-full text-left">
+        <div className="relative aspect-square bg-foreground/5 border border-border/20 rounded-xl overflow-hidden">
+          <Image
+            src={item.srcUrl}
+            alt={item.title}
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="mt-4">
+          <span className="px-3 py-1 rounded-sm bg-primary/20 text-xs">
+            {item.category}
+          </span>
+
+          <h3 className="text-lg font-semibold mt-2">{item.title}</h3>
+
+          <p className="text-muted-foreground text-sm">{item.description}</p>
+        </div>
+      </button>
+    </Container>
+  );
+};
 
 export default Gallery;

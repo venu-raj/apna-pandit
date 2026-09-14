@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 import { NAV_LINKS, Routes } from "@/constants";
 import { Button } from "../ui/button";
+import { WHATSAPP_NUMBER } from "@/constants/contact";
 
 interface Props {
   isOpen: boolean;
@@ -13,6 +14,23 @@ interface Props {
 }
 
 const MobileMenu = ({ isOpen, setIsOpen }: Props) => {
+  const handleWhatsApp = () => {
+    const phoneNumber = WHATSAPP_NUMBER;
+
+    const message = `🙏 Namaste,
+
+I’m interested in booking a service through your website.
+
+Could you please share the available services, pricing, packages, and booking details?
+
+Thank you. 🙏`;
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message,
+    )}`;
+
+    window.open(whatsappUrl, "_blank");
+  };
   return (
     <AnimatePresence>
       {isOpen && (
@@ -26,7 +44,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: Props) => {
           }}
           className="lg:hidden flex flex-col flex-1 px-4 pb-6 overflow-y-auto"
         >
-          <ul className="flex flex-col items-start flex-1 w-full space-y-2 py-4">
+          {/* <ul className="flex flex-col items-start flex-1 w-full space-y-2 py-4">
             {NAV_LINKS.map((item, index) => (
               <motion.li
                 key={index}
@@ -47,7 +65,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: Props) => {
                 </Link>
               </motion.li>
             ))}
-          </ul>
+          </ul> */}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -62,9 +80,9 @@ const MobileMenu = ({ isOpen, setIsOpen }: Props) => {
               <Button
                 size="default"
                 className="w-full"
-                onClick={() => setIsOpen(false)}
+                onClick={() => handleWhatsApp()}
               >
-                Start for free
+                Book Now
               </Button>
             </Link>
           </motion.div>

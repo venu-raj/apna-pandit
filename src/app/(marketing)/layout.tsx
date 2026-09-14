@@ -8,7 +8,7 @@ const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       {children}
       <Footer />
-      <WhatsAppWidget />
+      {/* <WhatsAppWidget /> */}
     </main>
   );
 };

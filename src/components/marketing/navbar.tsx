@@ -12,6 +12,7 @@ import Image from "next/image";
 import { BookingFormDialog } from "../form/booking-form-dialog";
 import { GalleryItem } from "@/types/gallery";
 import { SERVICESGALLERY } from "@/constants/services-gallery";
+import { WHATSAPP_NUMBER } from "@/constants/contact";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -28,6 +29,24 @@ const Navbar = () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  const handleWhatsApp = () => {
+    const phoneNumber = WHATSAPP_NUMBER;
+
+    const message = `🙏 Namaste,
+
+I’m interested in booking a service through your website.
+
+Could you please share the available services, pricing, packages, and booking details?
+
+Thank you. 🙏`;
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message,
+    )}`;
+
+    window.open(whatsappUrl, "_blank");
+  };
 
   return (
     <>
@@ -59,7 +78,7 @@ const Navbar = () => {
                   </div>
                 </Link>
 
-                <div className="hidden lg:flex items-center gap-1">
+                {/* <div className="hidden lg:flex items-center gap-1">
                   {NAV_LINKS.map((item, index) => (
                     <Link
                       key={index}
@@ -69,7 +88,7 @@ const Navbar = () => {
                       {item.label}
                     </Link>
                   ))}
-                </div>
+                </div> */}
               </div>
 
               {/* Right side: CTA + Mobile Menu */}
@@ -77,7 +96,7 @@ const Navbar = () => {
                 <Button
                   className="hidden lg:flex"
                   onClick={() => {
-                    setSelectedItem(SERVICESGALLERY[0]);
+                    handleWhatsApp();
                   }}
                 >
                   Book Now
@@ -102,15 +121,6 @@ const Navbar = () => {
           </div>
         </header>
       </div>
-      <BookingFormDialog
-        open={!!selectedItem}
-        onOpenChange={(open) => {
-          if (!open) {
-            setSelectedItem(null);
-          }
-        }}
-        item={selectedItem}
-      />
     </>
   );
 };
