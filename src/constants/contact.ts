@@ -19,24 +19,15 @@ export const CONTACT_DETAILS: ContactDetails[] = [
       "Bannerghatta, Bangalore - 560105.",
     ],
     email: "apnapandit.in@gmail.com",
-    phones: [
-      "+91 93437 35376",
-      "+91 70197 97078",
-    ],
+    phones: ["+91 93437 35376", "+91 70197 97078"],
   },
 
   {
     title: "Ashram Address",
     name: "Acharya Sri Shyamal Kishore Ji Maharaj",
-    address: [
-      "Geeta Vatika,",
-      "Gorakhpur (UP)",
-    ],
-    phones: [
-      "+91 9242626208",
-    ],
-    description:
-      "Contact us for all types of Katha and Pravachan.",
+    address: ["Geeta Vatika,", "Gorakhpur (UP)"],
+    phones: ["+91 9242426208"],
+    description: "Contact us for all types of Katha and Pravachan.",
     services: [
       "Ram Katha",
       "Shrimad Bhagwat Katha",
@@ -48,16 +39,9 @@ export const CONTACT_DETAILS: ContactDetails[] = [
   {
     title: "Branch Address",
     name: "Pandit Suryakant Jha",
-    address: [
-      "Delhi NCR,",
-      "Ashok Nagar, Sector - 15,",
-      "Noida.",
-    ],
-    phones: [
-      "+91 84478 81192",
-    ],
-    description:
-      "Contact for Puja Path & Hawan.",
+    address: ["Delhi NCR,", "Ashok Nagar, Sector - 15,", "Noida."],
+    phones: ["+91 84478 81192"],
+    description: "Contact for Puja Path & Hawan.",
   },
 ];
 
